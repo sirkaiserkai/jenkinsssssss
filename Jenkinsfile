@@ -1,9 +1,15 @@
 pipeline {
-    agent { docker { image 'python:3.5.1' } }
+    String applicationName = "basic-app"
+    String buildNumber = "0.1.${env.BUILD_NUMBER}"
+    String goPath = "/Users/kai.johnson/go/src/${applicationName}"
+
+    agent { docker { image 'golang:1.8.0-alpine' } }
     stages {
         stage('build') {
             steps {
-                sh 'python --version'
+                sh 'go version'
+                sh "cd ${goPath} && GOOS=darwin GOARCH=amd64 go build -o binaries/amd64/${buildNumber}/darwin/${applicationName}-${buildNumber}.darwin.amd64"
+                echo 'Success!'
             }
         }
     }
