@@ -16,6 +16,7 @@ pipeline {
             steps {
 
                 sh 'go version'
+                sh 'ls'
                 // sh "cd ${/} && GOOS=darwin GOARCH=amd64 go build -o binaries/amd64/${buildNumber}/darwin/${applicationName}-${buildNumber}.darwin.amd64"
                 sh 'cd /go/src/github.com/sirkaiserkai/jenkinsssssss && go build'
                 echo 'Success!'
