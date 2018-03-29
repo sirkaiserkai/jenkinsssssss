@@ -4,11 +4,12 @@ pipeline {
     // String goPath = "/Users/kai.johnson/go/src/${applicationName}"
 
     agent { docker { image 'golang:1.8.0-alpine' } }
-    stage('Checkout from GitHub') {
-        // No special needs here, if your projects relys on submodules the checkout step would need to be different
-        checkout scm
-    }
+    
     stages {
+        stage('Checkout from GitHub') {
+            // No special needs here, if your projects relys on submodules the checkout step would need to be different
+            checkout scm
+        }
         stage('build') {
             steps {
 
